@@ -1,0 +1,26 @@
+package com.mosambee.annotation;
+
+import static java.lang.annotation.ElementType.FIELD;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+import com.mosambee.annotation.impl.DevicePairFlagValidatorClass;
+import com.mosambee.constant.ApiResponseMessage;
+
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(FIELD)
+@Constraint(validatedBy = DevicePairFlagValidatorClass.class)
+public @interface DevicePairFlagValidator {
+	String message() default ApiResponseMessage.DEVICE_PAIR_FLAG_ERROR_MESSAGE;
+	
+	Class<?>[] groups() default {};
+
+	 Class<? extends Payload>[] payload() default {};
+}
