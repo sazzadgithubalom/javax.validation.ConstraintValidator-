@@ -1,0 +1,29 @@
+package com.mosambee.annotation.impl;
+
+import java.util.regex.Pattern;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.mosambee.annotation.DevicePairFlagValidator;
+
+/**
+ * @author sazzad.alom
+ *
+ */
+public class DevicePairFlagValidatorClass implements ConstraintValidator<DevicePairFlagValidator, String>{
+
+	private String regex = "^Y|N";
+	
+	@Override
+	public boolean isValid(String flag, ConstraintValidatorContext context) {
+		if (StringUtils.isBlank(flag)) {
+			return true;
+		}
+		Pattern pt = Pattern.compile(regex);
+		return pt.matcher(flag).matches();
+	}
+
+}
